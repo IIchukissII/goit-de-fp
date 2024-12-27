@@ -24,7 +24,7 @@ def get_spark_session(app_name: str) -> SparkSession:
             .getOrCreate())
 
 
-# Define schema for tables based on provided column names
+# Define schema for tables
 athlete_bio_schema = StructType([
     StructField("athlete_id", StringType(), True),
     StructField("name", StringType(), True),
@@ -170,7 +170,7 @@ def process_bronze_to_silver(table: str) -> Optional[str]:
         df = df.dropDuplicates()
 
         # Show after dropping duplicates
-        logger.info(f"Data after dropping duplicates (first 5 rows):")
+        logger.info(f"Data after dropping duplicates:")
         df.show(truncate=False)
 
         # Define the output path for the silver layer
